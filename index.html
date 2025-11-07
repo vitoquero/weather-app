@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header>
+    <div class="header-left">
+      <h1>Weather Dashboard</h1>
+      <form id="search-form">
+        <div class="search-container">
+          <input type="text" id="city-input" placeholder="Search city..." autocomplete="off" />
+          <div id="autocomplete-results" class="autocomplete-results">
+          </div>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <div class="header-right">
+      <button id="mode-toggle" title="Toggle Dark/Light Mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="current" class="card">
+      <h2>Current Weather</h2>
+      <div id="current-data">Loading...</div>
+    </section>
+
+    <section id="forecast" class="card">
+      <h2>7-Day Forecast</h2>
+      <div id="forecast-list" class="forecast-grid"></div>
+    </section>
+
+    <section id="timeline" class="card">
+      <h2>Today’s Timeline</h2>
+      <div id="timeline-chart" class="timeline"></div>
+    </section>
+  </main>
+
+  <section class="card link-section">
+    <h2>Hourly Graph</h2>
+    <p>View the temperature changes throughout the day.</p>
+    <a href="#" id="chart-link" class="link-button">View Hourly Graph →</a>
+  </section>
+
+  <footer>
+    <p>Data provided by Open-Meteo.</p>
+  </footer>
+
+  <div id="scroll-down" class="scroll-indicator down">⬇️</div>
+  <div id="scroll-up" class="scroll-indicator up">⬆️</div>
+  <script src="./js/app.js"></script>
+</body>
+
+</html>

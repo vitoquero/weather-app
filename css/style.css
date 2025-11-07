@@ -1,0 +1,551 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#forecast h2,
+#timeline h2,
+.chart-container h2 {
+  padding-bottom: 15px;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(to bottom right, #e0f2ff, #ffffff);
+  color: #222;
+  padding: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.header-left {
+  text-align: center;
+  flex: 1 1 250px;
+}
+
+.header-right {
+  text-align: right;
+}
+
+#mode-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#mode-toggle:hover {
+  transform: scale(1.2);
+}
+
+#search-form {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.search-container {
+  position: relative;
+}
+
+#city-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+  font-size: 1rem;
+}
+
+#search-form button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#search-form button:hover {
+  background: #2563eb;
+}
+
+.autocomplete-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+body.dark .autocomplete-results {
+  background-color: #1e293b;
+  border-color: #475569;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .autocomplete-item {
+  color: #f1f5f9;
+  border-bottom: 1px solid #334155;
+}
+
+body.dark .autocomplete-item:hover {
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.autocomplete-item {
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f0f0;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.city-label {
+  text-align: center;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 0.5rem;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.forecast-day {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+  background: #f9fafb;
+  transition: transform 0.2s;
+}
+
+.forecast-day:hover {
+  transform: scale(1.03);
+}
+
+.timeline {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
+}
+
+.hour-block {
+  min-width: 70px;
+  text-align: center;
+}
+
+.bar {
+  width: 20px;
+  margin: 0 auto;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, #60a5fa, #3b82f6);
+}
+
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  color: #555;
+}
+
+body.dark {
+  background: linear-gradient(to bottom right, #1e293b, #0f172a);
+  color: #e2e8f0;
+}
+
+body.dark .card {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+body.dark .forecast-day {
+  background: #334155;
+  border-color: #475569;
+}
+
+body.dark .city-label {
+  text-align: center;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.5rem;
+}
+
+body.dark #city-input {
+  background: #1e293b;
+  color: #e2e8f0;
+  border-color: #475569;
+}
+
+body.dark #search-form button {
+  background: #64748b;
+}
+
+body.dark #search-form button:hover {
+  background: #475569;
+}
+
+.link-section {
+  text-align: center;
+}
+
+.link-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 0.6rem 1.2rem;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.link-button:hover {
+  background: #2563eb;
+}
+
+body.dark .link-button {
+  background: #64748b;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+  padding: 1.5rem;
+}
+
+body.dark .loading-message {
+  color: #e2e8f0;
+}
+
+html.dark,
+html.dark body {
+  background: linear-gradient(to bottom right, #1e293b, #0f172a);
+  color: #e2e8f0;
+}
+
+html.dark .card,
+html.dark body .card {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+html.dark .forecast-day,
+html.dark body .forecast-day {
+  background: #334155;
+  border-color: #475569;
+}
+
+html.dark .link-button {
+  background: #64748b;
+}
+
+html.dark .loading-message {
+  color: #e2e8f0;
+}
+
+.chart-container {
+  overflow-x: auto;
+  padding: 0.5rem;
+}
+
+.chart-wrapper {
+  width: 100%;
+  min-width: 800px;
+}
+
+#tempChart {
+  width: 100%;
+  height: 400px;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .chart-wrapper {
+    min-width: 700px;
+  }
+
+  #tempChart {
+    height: 300px;
+  }
+}
+
+.autocomplete-results,
+.autocomplete-item {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@media (max-width: 700px) {
+  #tempChart {
+    height: 320px;
+  }
+
+  canvas {
+    font-size: 12px !important;
+  }
+
+  .chart-wrapper {
+    min-width: 800px;
+    overflow-x: auto;
+  }
+}
+
+.current-weather-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  text-align: left;
+}
+
+.weather-info {
+  flex: 1;
+  min-width: 200px;
+}
+
+.city-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.weather-desc {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.temp-value {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 0.25rem;
+}
+
+.wind-info {
+  font-size: 1rem;
+  color: #444;
+}
+
+.weather-icon-large {
+  font-size: 5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+}
+
+body.dark .weather-desc {
+  color: #e2e8f0;
+}
+
+body.dark .wind-info {
+  color: #cbd5e1;
+}
+
+body.dark .temp-value {
+  color: #60a5fa;
+}
+
+.current-weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.weather-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+}
+
+.city-name {
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.weather-desc {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.temp {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 0.25rem;
+}
+
+.wind {
+  font-size: 1rem;
+  color: #444;
+}
+
+.weather-icon {
+  font-size: 8rem;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.dark .weather-desc {
+  color: #e2e8f0;
+}
+
+body.dark .wind {
+  color: #cbd5e1;
+}
+
+body.dark .temp {
+  color: #60a5fa;
+}
+
+.scroll-indicator {
+  position: fixed;
+  z-index: 1000;
+  cursor: pointer;
+  color: var(--text-color, #333);
+  opacity: 0.8;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+  user-select: none;
+  pointer-events: auto;
+  font-size: 2rem;
+}
+
+.scroll-indicator.down {
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1.5s infinite;
+}
+
+.scroll-indicator.up {
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  opacity: 0.9;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+body.dark .scroll-indicator {
+  color: #f1f5f9;
+}
+
+@media (max-width: 480px) {
+  .scroll-indicator {
+    font-size: 2.2rem;
+  }
+
+  .scroll-indicator.down {
+    left: 90%;
+    bottom: 10px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 1023px) {
+  .scroll-indicator {
+    font-size: 1.8rem;
+  }
+
+  .scroll-indicator.down {
+    bottom: 25px;
+    left: 90%;
+    transform: translateX(-50%);
+  }
+
+  .scroll-indicator.up {
+    right: 25px;
+    bottom: 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .scroll-indicator {
+    font-size: 1.6rem;
+  }
+
+  .scroll-indicator.down {
+    bottom: 30px;
+    right: 15px;
+    left: auto;
+    transform: none;
+  }
+
+  .scroll-indicator.up {
+    bottom: 30px;
+    right: 30px;
+  }
+}

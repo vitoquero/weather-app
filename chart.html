@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Temperature Chart</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Temperature Graph</h1>
+            <p>Hourly temperature variation</p>
+        </div>
+        <div class="header-right">
+            <a href="index.html" class="link-button">← Back to Dashboard</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="card chart-container">
+            <h2>Temperature (°C)</h2>
+            <h2>
+                <p id="current-city" class="city-label"></p>
+            </h2>
+            <div id="loading-message" class="loading-message">Loading...</div>
+            <div class="chart-wrapper">
+                <canvas id="tempChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data provided by Open-Meteo</p>
+    </footer>
+
+    <script src="./js/chart.js"></script>
+</body>
+
+</html>
