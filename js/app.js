@@ -177,6 +177,7 @@ async function loadWeather(lat, lon, label) {
   document.getElementById("timeline-chart").innerHTML = "";
   localStorage.setItem("lastLat", lat);
   localStorage.setItem("lastLon", lon);
+  localStorage.setItem("lastCity", label);
 
   try {
     const weather = await getWeather(lat, lon);
@@ -269,7 +270,12 @@ function setupDarkMode() {
 function init() {
   setupDarkMode();
 
-  if (navigator.geolocation) {
+  const savedLat = localStorage.getItem("lastLat");
+  const savedLon = localStorage.getItem("lastLon");
+  const savedCity = localStorage.getItem("lastCity");
+  if (savedLat && savedLon && savedCity) {
+    loadWeather(savedLat, savedLon, savedCity);
+  } else if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       if (geoCanceled) return;
 
@@ -371,5 +377,18 @@ function checkScrollVisibility() {
     upArrow.style.display = "block";
   }
 }
+
+document.getElementById("locate-me").addEventListener("click", async () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async (pos) => {
+      const { latitude, longitude } = pos.coords;
+      const name = await getCityName(latitude, longitude);
+      loadWeather(latitude, longitude, name);
+    });
+  } else {
+    displayMessage("Geolocation not supported by your browser.");
+  }
+});
+
 
 window.addEventListener("load", init);

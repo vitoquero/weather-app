@@ -27,12 +27,30 @@ header {
 }
 
 .header-left {
+  text-align: left;
+}
+
+.header-center {
   text-align: center;
   flex: 1 1 250px;
 }
 
 .header-right {
   text-align: right;
+}
+
+#locate-me {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #3b82f6;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#locate-me:hover {
+  background: #2563eb;
 }
 
 #mode-toggle {
