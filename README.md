@@ -141,21 +141,9 @@ document.body.classList.toggle("dark", theme === "dark");
 ---
 
 ## 🖼️ UI Preview (Layout Overview)
+Access the completed website at this link [here](https://vitoquero.github.io/weather-app/)!
 
-```
-+------------------------------------------------------+
-|  🌤️  City: London                                    |
-|  Condition: Partly Cloudy                            |
-|  Temperature: 23.4°C                                 |
-|  Wind: 3.2 m/s                                       |
-|                                                      |
-|  [ Search City 🔍 ]   [ ☀️ / 🌙 Toggle Theme ]      |
-+------------------------------------------------------+
-
-7-Day Forecast → horizontally scrollable weather cards
-
-[ See Hourly Chart → ]
-```
+https://github.com/user-attachments/assets/f8a0009e-e163-405f-bc8e-a15afab3678a
 
 ---
 
@@ -164,7 +152,7 @@ document.body.classList.toggle("dark", theme === "dark");
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/weather-app.git
+   git clone https://github.com/vitoquero/weather-app.git
    cd weather-app
    ```
 
