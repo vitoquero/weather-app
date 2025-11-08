@@ -141,7 +141,6 @@ document.body.classList.toggle("dark", theme === "dark");
 ---
 
 ## 🖼️ UI Preview (Layout Overview)
-Access the completed website at this link [here](https://vitoquero.github.io/weather-app/)!
 
 https://github.com/user-attachments/assets/f8a0009e-e163-405f-bc8e-a15afab3678a
 
@@ -167,7 +166,11 @@ https://github.com/user-attachments/assets/f8a0009e-e163-405f-bc8e-a15afab3678a
    * If denied, you can manually search for a city.
 
 ---
+## <img height="40" width="40" src="https://github.com/gui-bus/TechIcons/blob/main/Dark/Github.svg" /> Run remotely
 
+* Access the completed website at this link [here](https://vitoquero.github.io/weather-app/)!
+
+---
 ## 💡 Extra Notes
 
 * No external CSS or JS frameworks were used — only **native HTML, CSS, and JS**.
@@ -178,8 +181,11 @@ https://github.com/user-attachments/assets/f8a0009e-e163-405f-bc8e-a15afab3678a
 ## 👨‍💻 Author
 
 **Developed by:** *Vito Carvalhais*
+
 **Course Assignment:** *Weather App Project (Assignment 2)*
+
 **Language:** English
+
 **Year:** 2025
 
 ---
